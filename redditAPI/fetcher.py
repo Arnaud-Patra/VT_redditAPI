@@ -2,29 +2,27 @@ import re
 import requests
 import praw
 
+def example1():
+    '''Without praw.init'''
+    reddit = praw.Reddit(client_id='jY4RL92sf7AVSA',
+                         client_secret='uSWci46GVGSdnCkBwMvpvzxw-K4',
+                         username='Arnaudp44',
+                         password='sxks*63k',
+                         user_agent='prawFetcher')
 
-'''Without praw.init'''
-# reddit = praw.Reddit(client_id='jY4RL92sf7AVSA',
-#                      client_secret='uSWci46GVGSdnCkBwMvpvzxw-K4',
-#                      username='Arnaudp44',
-#                      password='sxks*63k',
-#                      user_agent='prawFetcher')
+    subreddit = reddit.subreddit('Dankmemes')
 
+    hot_python = subreddit.hot(limit=10)
 
+    for submission in hot_python:
 
-# subreddit = reddit.subreddit('Dankmemes')
+        # dir_sub = dir(submission)
 
-# hot_python = subreddit.hot(limit=10)
-
-# for submission in hot_python:
-#
-#     # dir_sub = dir(submission)
-#
-#     if not submission.stickied:
-#         print('Title: {}, ups: {}, downs: {}, Have we visited?: {}'.format(submission.title,
-#                                                                                submission.ups,
-#                                                                                submission.downs,
-#                                                                                submission.visited))
+        if not submission.stickied:
+            print('Title: {}, ups: {}, downs: {}, Have we visited?: {}'.format(submission.title,
+                                                                                   submission.ups,
+                                                                                   submission.downs,
+                                                                                   submission.visited))
 
 
 # top_all_EarthPorn = EarthPorn.top('day', limit=1)
@@ -41,12 +39,17 @@ def subfetcher():
     """Open subreddits"""
     with open('subreddits.txt') as subs_txt:
         for sub in subs_txt:
+
             subreddit = reddit.subreddit(sub)
+
             top_post = subreddit.top('day', limit=1)
-            if not top_post.stickied:
-                print(top_post.url)
-            else:
-                print("> top post is stickied")
+            for submission in top_post:
+                if not submission.stickied:
+                    print(top_post.url)
+                else:
+                    print("> top post is stickied")
+
+
 
 def get_top(sub):
     # subreddit = reddit.subreddit(sub)
@@ -55,4 +58,4 @@ def get_top(sub):
 
 if __name__ == "__main__":
     # execute only if run as a script
-    subfetcher()
+    example1()
