@@ -1,4 +1,5 @@
 import re
+
 import requests
 import praw
 
@@ -25,10 +26,10 @@ def example1():
                                                                                    submission.visited))
 
 
-# top_all_EarthPorn = EarthPorn.top('day', limit=1)
-#     for submission in top_all_EarthPorn:
-#         if not submission.stickied:
-#             print(submission.url)
+    # top_all_EarthPorn = EarthPorn.top('day', limit=1)
+    #     for submission in top_all_EarthPorn:
+    #         if not submission.stickied:
+    #             print(submission.url)
 
 
 def subfetcher():
@@ -39,13 +40,13 @@ def subfetcher():
     """Open subreddits"""
     with open('subreddits.txt') as subs_txt:
         for sub in subs_txt:
-
+            sub = sub.replace("\n", "")
             subreddit = reddit.subreddit(sub)
 
             top_post = subreddit.top('day', limit=1)
             for submission in top_post:
                 if not submission.stickied:
-                    print(top_post.url)
+                    print(submission.url)
                 else:
                     print("> top post is stickied")
 
@@ -58,4 +59,4 @@ def get_top(sub):
 
 if __name__ == "__main__":
     # execute only if run as a script
-    example1()
+    subfetcher()
