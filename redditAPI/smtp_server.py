@@ -15,6 +15,7 @@ def smtp_setup():
 
     s.starttls()
 
+    print("> Login...")
     s.login(MY_ADDRESS, pwd)
     print("> Login successful")
     send_mail(s)
