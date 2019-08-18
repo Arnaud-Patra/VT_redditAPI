@@ -12,7 +12,6 @@ mycursor = mydb.cursor()
 mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
 
 
-
 class Submissionstorage:
 
     def store_submission(submission):
