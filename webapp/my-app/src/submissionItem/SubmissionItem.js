@@ -10,16 +10,23 @@ import App from "../App";
 //         )
 //     }
 // }
-
-function SubmissionItem(props) {
-    return (
-        <div className={'FancyBorder FancyBorder-' + props.data}>
-            {props.data.id}
-            {props.data.title}
-            {props.data.url}
-            {props.data.upvote}
+function SumissionItem(props){
+    return(
+        <div className={'SubmissionItem'}>
+            {props.id}
+            {props.title}
+            {props.url}
+            {props.upvote}
         </div>
     )
 }
 
-export default SubmissionItem
+function SubmissionList(props) {
+    return (
+        <div>
+            {props.data.map(c => <SumissionItem key={c.id} name={c.title} url={c.url} upvote={c.upvote}/>)}
+        </div>
+    )
+}
+
+export default SubmissionList

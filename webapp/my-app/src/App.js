@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import SubmissionItem from './submissionItem/SubmissionItem'
+import SubmissionList from './submissionItem/SubmissionItem'
 
 class App extends React.Component {
   constructor(props) {
@@ -15,9 +15,16 @@ class App extends React.Component {
     }
   }
 
+  sublist = [
+    { id: 1, url: "Leanne Graham", title: "a great title",upvote: 10 },
+    { id: 2, url: "Ervin Howell", title: "a great title",upvote: 10 },
+    { id: 3, url: "Clementine Bauch", title: "a great title",upvote: 10 },
+    { id: 4, url: "Patricia Lebsack", title: "a great title",upvote: 10 }
+  ];
+
   render() {
     return(
-        <SubmissionItem data={this.state}/>
+        <SubmissionList data={this.sublist}/>
     )
     // whatever you like
   }
