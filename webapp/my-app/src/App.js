@@ -1,33 +1,40 @@
 import React from 'react';
 import './App.css';
-import SubmissionList from './submissionItem/SubmissionItem'
+import SubmissionList from './submissionItem/Submission'
+import SubGetter from "./subGetter/getter";
 
 class App extends React.Component {
-  constructor(props) {
-    // Required step: always call the parent class' constructor
-    super(props);
+    constructor(props) {
+        // Required step: always call the parent class' constructor
+        super(props);
 
-    this.state = {
-      id: null,
-      url: "www.jesaispas.com",
-      title: "a great title",
-      upvote: 10
+        this.state = {
+            subs: []
+        }
     }
-  }
 
-  sublist = [
-    { id: 1, url: "Leanne Graham", title: "a great title",upvote: 10 },
-    { id: 2, url: "Ervin Howell", title: "a great title",upvote: 10 },
-    { id: 3, url: "Clementine Bauch", title: "a great title",upvote: 10 },
-    { id: 4, url: "Patricia Lebsack", title: "a great title",upvote: 10 }
-  ];
+    sublist = [
+        { id: 1, title: "Leanne Graham", url: "www.google.com",upvote: 11 },
+        { id: 2, title: "Ervin Howell", url: "a great title",upvote: 12 },
+        { id: 3, title: "Clementine Bauch", url: "a great title",upvote: 13 },
+        { id: 4,  title: "Patricia Lebsack", url: "a great title",upvote: 14 }
+    ];
 
-  render() {
-    return(
-        <SubmissionList data={this.sublist}/>
-    )
-    // whatever you like
-  }
+    componentDidMount() {
+        this.items = SubGetter.fetcher();
+    }
+
+    render() {
+        return(
+            <div className="?">
+                <div className="mainHeader">
+                    Best website ever
+                </div>
+                <SubmissionList data={this.sublist}/>
+            </div>
+
+        )
+    }
 }
 
 export default App;
