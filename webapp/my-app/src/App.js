@@ -21,7 +21,7 @@ class App extends React.Component {
     ];
 
     componentDidMount() {
-        this.items = SubGetter.fetcher();
+        this.items = SubGetter.fetch;
     }
 
     render() {

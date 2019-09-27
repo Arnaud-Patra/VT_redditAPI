@@ -6,10 +6,12 @@ class SubGetter extends React.Component {
         super(props);
 
         this.state = {
+            isLoaded: true,
+            items: {}
         }
     }
 
-    static fetcher() {
+    fetcher() {
         fetch("https://api.example.com/items")
             .then(res => res.json())
             .then(
@@ -30,6 +32,7 @@ class SubGetter extends React.Component {
                 }
             )
     }
+
 
 }
 
