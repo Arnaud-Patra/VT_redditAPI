@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import SubmissionList from './submissionItem/Submission'
-import SubGetter from "./subGetter/getter";
+import {postsfetcher} from "./subGetter/getter";
 
 class App extends React.Component {
     constructor(props) {
@@ -21,8 +21,10 @@ class App extends React.Component {
     ];
 
     componentDidMount() {
-        this.items = SubGetter.fetch;
+        this.items = postsfetcher();
     }
+
+
 
     render() {
         return(
