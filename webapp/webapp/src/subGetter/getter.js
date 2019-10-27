@@ -1,4 +1,5 @@
 import React from 'react';
+import SubModel from "../Models/submodel";
 
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -15,17 +16,22 @@ class SubGetter extends React.Component {
     }
 
 }
-
+//https://www.reddit.com/r/worldnews/
 export function postsfetcher() {
-    fetch("https://api.example.com/items")
+    fetch("https://www.reddit.com/r/worldnews.json")
         .then(res => res.json())
         .then(
             (result) => {
-                return result.items
+                const subs = [];
+                //Should return list of models.
+                for (const item of result.data.children){
+                    subs.push(SubModel.toSubModel(item))
+                }
+                return subs
             },
             // Error handler
             (error) => {
-                console.log("could not connect to url");
+                console.log("could not connect to url" + "url");
                 return null
             }
         )

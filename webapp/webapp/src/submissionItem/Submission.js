@@ -22,7 +22,9 @@ function SubmissionItem(props){
 function SubmissionList(props) {
     return(
         <div className="submissionList">
-            {props.data.map(c => <SubmissionItem key={c.id} title={c.title} url={c.url} upvote={c.upvote}/>)}
+            {
+                props.data.map(c => <SubmissionItem key={c.id} title={c.title} url={c.url} upvote={c.upvote}/>)
+            }
         </div>
     )
 }
