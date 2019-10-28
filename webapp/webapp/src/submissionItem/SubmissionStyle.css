@@ -1,21 +1,36 @@
-.submissionItem {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #bbb;
-    background-color: #bbbbbb;
+
+
+.body {
+    background-color: #030303;
 }
 
 .submissionList {
     margin: 10px;
     padding: 10px;
-    border: 1px solid #bbb;
-    background-color: #282c34;
+    border: 1px solid #000000;
+    background-color: #030303;
+    border-radius : 10px;
 }
 
-.subtitle {
-    font-family: "Times New Roman", Times, serif;
+.submissionItem {
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid #bbb;
+    background-color: #1A1A1B;
+    border-radius : 15px;
+    font-family: Arial, sans-serif;
+    color: #D7DADC;
+}
+
+.sub_title {
+    font-family: Arial, sans-serif;
     font-weight: bold;
-    font-size: 35px;
+    font-size: 25px;
+    color: #D7DADC;
+}
+
+.score{
+    color: #dc8033;
 }
 
 .upvote{

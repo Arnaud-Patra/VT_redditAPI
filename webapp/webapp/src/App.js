@@ -64,7 +64,7 @@ class App extends React.Component {
 
     render() {
         return(
-            <div className="?">
+            <div className="body">
                 <div className="mainHeader">
                     Best website ever
                 </div>

@@ -6,16 +6,17 @@ function SubmissionItem(props){
     return(
         <div className="submissionItem">
             {props.key}
-            <div className="subtitle">
+            <div className="sub_title">
                 {props.title}
             </div>
-            <div className='url'>
+            <a href={props.url} className='url'>
                 {props.url}
-            </div>
-            <div className="upvote">
-                {props.upvote}
+            </a>
+            <div className="score">
+                {props.score}
             </div>
         </div>
+
     )
 }
 
@@ -23,7 +24,7 @@ function SubmissionList(props) {
     return(
         <div className="submissionList">
             {
-                props.data.map(c => <SubmissionItem key={c.id} title={c.title} url={c.url} upvote={c.upvote}/>)
+                props.data.map(c => <SubmissionItem key={c.id} title={c.title} url={c.url} score={c.score}/>)
             }
         </div>
     )

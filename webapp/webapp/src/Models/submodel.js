@@ -8,7 +8,6 @@ class SubModel extends React.Component {
         this.url = url;
         this.title = title;
         this.score = score;
-
     }
 
     /* Method to convert reddit object into local model*/
