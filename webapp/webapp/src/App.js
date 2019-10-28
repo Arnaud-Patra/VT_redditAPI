@@ -1,18 +1,19 @@
 import React from 'react';
 import './App.css';
 import SubmissionList from './submissionItem/Submission'
-import {postsfetcher} from "./subGetter/getter";
 import SubModel from "./Models/submodel";
 
 class App extends React.Component {
-    constructor(subs) {
+    constructor(props) {
         // Required step: always call the parent class' constructor
-        super();
+        super(props);
 
         this.state = {
             subs: []
-        }
-        this.subs = subs
+        };
+
+        const mod = new SubModel("www.init.com", "INit test",11)
+        this.state.subs.push(mod);
     }
 
     //Mock data
@@ -25,19 +26,41 @@ class App extends React.Component {
     ];
     */
 
-    componentDidMount() {
-        this.subs =  [
-            SubModel("www.google.com", "Leanne Graham",11),
-            SubModel("www.2.com", "test",121)
-        ];
+    async componentDidMount() {
+        const sub = new SubModel("www.google.com", "Leanne Graham", 11);
+        this.setState({subs: [sub]});
+        //this.state.subs.push(sub);
 
         /*
-        this.state.subs = postsfetcher();
+        const subs_fetched = this.postsfetcher();
+        this.setState({subs: subs_fetched});
         */
+
+        this.postsfetcher();
+
         console.log("fetched sub =" + this.state.subs);
     }
 
-
+     postsfetcher() {
+        fetch("https://www.reddit.com/r/worldnews.json")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    const subs = [];
+                    //Should return list of models.
+                    for (const item of result.data.children){
+                        subs.push(SubModel.toSubModel(item))
+                    }
+                    //return subs
+                    this.setState({subs: subs})
+                },
+                // Error handler
+                (error) => {
+                    console.log("could not connect to url" + "url");
+                    return null
+                }
+            )
+    }
 
     render() {
         return(

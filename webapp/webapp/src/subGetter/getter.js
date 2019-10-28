@@ -17,7 +17,7 @@ class SubGetter extends React.Component {
 
 }
 //https://www.reddit.com/r/worldnews/
-export function postsfetcher() {
+export function postsfetcher_ext() {
     fetch("https://www.reddit.com/r/worldnews.json")
         .then(res => res.json())
         .then(
@@ -35,31 +35,6 @@ export function postsfetcher() {
                 return null
             }
         )
-}
-
-function requestPosts(subreddit) {
-    return {
-        type: REQUEST_POSTS,
-        subreddit
-    }
-}
-
-function receivePosts(subreddit, json) {
-    return {
-        type: RECEIVE_POSTS,
-        subreddit,
-        posts: json.data.children.map(child => child.data),
-        receivedAt: Date.now()
-    }
-}
-
-function fetchPosts(subreddit) {
-    return dispatch => {
-        dispatch(requestPosts(subreddit))
-        return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-            .then(response => response.json())
-            .then(json => dispatch(receivePosts(subreddit, json)))
-    }
 }
 
 export default SubGetter;
