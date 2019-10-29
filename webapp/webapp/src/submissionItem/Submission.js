@@ -6,6 +6,9 @@ function SubmissionItem(props){
     return(
         <div className="submissionItem">
             {props.key}
+            <div className="subreddit">
+                {"r/" + props.subreddit}
+            </div>
             <div className="sub_title">
                 {props.title}
             </div>
@@ -24,7 +27,7 @@ function SubmissionList(props) {
     return(
         <div className="submissionList">
             {
-                props.data.map(c => <SubmissionItem key={c.id} title={c.title} url={c.url} score={c.score}/>)
+                props.data.map(c => <SubmissionItem key={c.id} subreddit={c.subreddit} title={c.title} url={c.url} score={c.score}/>)
             }
         </div>
     )

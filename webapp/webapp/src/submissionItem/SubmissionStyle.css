@@ -1,5 +1,3 @@
-
-
 .body {
     background-color: #030303;
 }
@@ -21,11 +19,14 @@
     font-family: Arial, sans-serif;
     color: #D7DADC;
 }
-
+.subreddit{
+    font-weight: bold;
+}
 .sub_title {
     font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
+    font-weight: normal;
+    font-size: 18px;
+    padding: 10px 0px 10px 0px;
     color: #D7DADC;
 }
 

@@ -2,9 +2,10 @@ import React from "react";
 
 class SubModel extends React.Component {
 
-    constructor(url, title, score) {
+    constructor(url, subreddit, title, score) {
         super();
 
+        this.subreddit = subreddit;
         this.url = url;
         this.title = title;
         this.score = score;
@@ -12,7 +13,7 @@ class SubModel extends React.Component {
 
     /* Method to convert reddit object into local model*/
     static toSubModel(item) {
-        return new SubModel(item.data.url, item.data.title, item.data.score);
+        return new SubModel(item.data.url, item.data.subreddit, item.data.title, item.data.score);
     }
 }
 

@@ -26,9 +26,11 @@ class App extends React.Component {
     ];
     */
 
-    async componentDidMount() {
+    componentDidMount() {
+        /*
         const sub = new SubModel("www.google.com", "Leanne Graham", 11);
         this.setState({subs: [sub]});
+        */
         //this.state.subs.push(sub);
 
         /*
@@ -42,7 +44,7 @@ class App extends React.Component {
     }
 
      postsfetcher() {
-        fetch("https://www.reddit.com/r/worldnews.json")
+        fetch("https://www.reddit.com/r/worldnews/top/.json?count=10")
             .then(res => res.json())
             .then(
                 (result) => {
