@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import SubmissionList from './submissionItem/Submission'
 import SubModel from "./Models/submodel";
+import {reddit_news} from "./enum/urls";
 
 class App extends React.Component {
     constructor(props) {
@@ -12,8 +13,6 @@ class App extends React.Component {
             subs: []
         };
 
-        const mod = new SubModel("www.init.com", "INit test",11)
-        this.state.subs.push(mod);
     }
 
     //Mock data
@@ -32,33 +31,51 @@ class App extends React.Component {
         this.setState({subs: [sub]});
         */
         //this.state.subs.push(sub);
-
         /*
         const subs_fetched = this.postsfetcher();
         this.setState({subs: subs_fetched});
         */
 
-        this.postsfetcher();
+        Object.entries(reddit_news).map(([redditNewsKey, value]) => {
 
-        console.log("fetched sub =" + this.state.subs);
+            const url = parse_url(value, "top", 2);
+
+            console.log("fetching : " + url);
+
+            this.postsFetcher(url)
+        });
+
+        for (let redditNewsKey in reddit_news) {
+            console.log(redditNewsKey);
+
+        }
+
+
+
     }
 
-     postsfetcher() {
-        fetch("https://www.reddit.com/r/worldnews/top/.json?count=10")
+     postsFetcher(url) {
+        fetch(url)
             .then(res => res.json())
             .then(
                 (result) => {
-                    const subs = [];
+                    const new_subs = [];
                     //Should return list of models.
                     for (const item of result.data.children){
-                        subs.push(SubModel.toSubModel(item))
+                        new_subs.push(SubModel.toSubModel(item))
                     }
-                    //return subs
-                    this.setState({subs: subs})
+                    // TODO : not set state here but add ubs to larger list.
+                    // TODO : this is the right way to do it.
+                    this.setState(prevState => ({
+                        subs: new_subs.map((sub) => [...prevState.subs,  sub])
+                    }))
+
+                    // this.setState({subs: new_subs})
                 },
                 // Error handler
                 (error) => {
-                    console.log("could not connect to url" + "url");
+                    console.log("could not connect to : " + url);
+                    //TODO : error handling
                     return null
                 }
             )
@@ -75,6 +92,25 @@ class App extends React.Component {
 
         )
     }
+}
+
+/** Function to parse the url
+ * mode : string -> should be enum
+ * nb_subs : int
+ * **/
+function parse_url(url, mode = "top", nb_subs = 10){
+    // "https://www.reddit.com/r/worldnews/top.json?count=1";
+    return url + mode + ".json?limit=" + nb_subs
+}
+
+/** Function to parse the response**/
+function parseResponse(result) {
+    const subs = [];
+    //Should return list of models.
+    for (const item of result.data.children){
+        subs.push(SubModel.toSubModel(item))
+    }
+    return subs
 }
 
 export default App;
