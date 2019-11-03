@@ -42,7 +42,13 @@ class App extends React.Component {
 
             console.log("fetching : " + url);
 
-            this.postsFetcher(url)
+            //call API to retrieve posts
+            this.postsFetcher(url);
+
+            //Sort the subs and modify state after.
+            sort_subs(this.subs);
+
+
         });
 
         for (let redditNewsKey in reddit_news) {
@@ -71,10 +77,7 @@ class App extends React.Component {
                         subs: [...prevState.subs.concat(new_subs)]
                     }))
 
-                    //working one
-                    // this.setState(prevState => ({
-                    //     subs: [...prevState.subs, new_subs]
-                    // }))
+                    //TODO : call functions to sort the sub here?
 
                     // this.setState({subs: new_subs})
                 },
@@ -119,4 +122,26 @@ function parseResponse(result) {
     return subs
 }
 
+/**compute popularity of all submissions from their subscribers of subreddit and upvotes.
+ * return << 1
+ * **/
+function calc_pop(subs) {
+
+    for(const sub in subs){
+
+    }
+    //return ups/subscribers
+}
+
+/**
+ * Function to sort the submissions by their score. 
+ * **/
+function sort_subs(subs) {
+    //Todo : implement sorting algorithm
+    const sorted_subs = null;
+
+    return sorted_subs
+}
+
 export default App;
+
