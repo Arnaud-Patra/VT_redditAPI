@@ -64,11 +64,17 @@ class App extends React.Component {
                     for (const item of result.data.children){
                         new_subs.push(SubModel.toSubModel(item))
                     }
+
                     // TODO : not set state here but add ubs to larger list.
-                    // TODO : this is the right way to do it.
+                    //Add new subs to previous one in the state
                     this.setState(prevState => ({
-                        subs: new_subs.map((sub) => [...prevState.subs,  sub])
+                        subs: [...prevState.subs.concat(new_subs)]
                     }))
+
+                    //working one
+                    // this.setState(prevState => ({
+                    //     subs: [...prevState.subs, new_subs]
+                    // }))
 
                     // this.setState({subs: new_subs})
                 },
